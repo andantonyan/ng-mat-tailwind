@@ -1,0 +1,182 @@
+@use "sass:map";
+@use "@material/tokens/v0_161" as mdc-tokens;
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$light-theme: mat.define-theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$violet-palette,
+        //use-system-variables: true,
+      ),
+      typography: (
+        brand-family: roboto,
+        bold-weight: 900,
+        //use-system-variables: true,
+      ),
+    )
+);
+
+$dark-theme: mat.define-theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: mat.$azure-palette,
+        tertiary: mat.$violet-palette,
+        //use-system-variables: true,
+      ),
+      typography: (
+        brand-family: roboto,
+        bold-weight: 900,
+        //use-system-variables: true,
+      ),
+    )
+);
+
+@mixin theme-variables($theme) {
+  --app-primary: #{mat.get-theme-color($theme, primary)};
+  --app-on-primary: #{mat.get-theme-color($theme, on-primary)};
+  --app-primary-container: #{mat.get-theme-color($theme, primary-container)};
+  --app-on-primary-container: #{mat.get-theme-color($theme, on-primary-container)};
+  --app-primary-fixed: #{mat.get-theme-color($theme, primary-fixed)};
+  --app-primary-fixed-dim: #{mat.get-theme-color($theme, primary-fixed-dim)};
+  --app-on-primary-fixed: #{mat.get-theme-color($theme, on-primary-fixed)};
+  --app-on-primary-fixed-variant: #{mat.get-theme-color($theme, on-primary-fixed-variant)};
+  --app-secondary: #{mat.get-theme-color($theme, secondary)};
+  --app-on-secondary: #{mat.get-theme-color($theme, on-secondary)};
+  --app-secondary-container: #{mat.get-theme-color($theme, secondary-container)};
+  --app-on-secondary-container: #{mat.get-theme-color($theme, on-secondary-container)};
+  --app-secondary-fixed: #{mat.get-theme-color($theme, secondary-fixed)};
+  --app-secondary-fixed-dim: #{mat.get-theme-color($theme, secondary-fixed-dim)};
+  --app-on-secondary-fixed: #{mat.get-theme-color($theme, on-secondary-fixed)};
+  --app-on-secondary-fixed-variant: #{mat.get-theme-color($theme, on-secondary-fixed-variant)};
+  --app-tertiary: #{mat.get-theme-color($theme, tertiary)};
+  --app-on-tertiary: #{mat.get-theme-color($theme, on-tertiary)};
+  --app-tertiary-container: #{mat.get-theme-color($theme, tertiary-container)};
+  --app-on-tertiary-container: #{mat.get-theme-color($theme, on-tertiary-container)};
+  --app-tertiary-fixed: #{mat.get-theme-color($theme, tertiary-fixed)};
+  --app-tertiary-fixed-dim: #{mat.get-theme-color($theme, tertiary-fixed-dim)};
+  --app-on-tertiary-fixed: #{mat.get-theme-color($theme, on-tertiary-fixed)};
+  --app-on-tertiary-fixed-variant: #{mat.get-theme-color($theme, on-tertiary-fixed-variant)};
+  --app-error: #{mat.get-theme-color($theme, error)};
+  --app-on-error: #{mat.get-theme-color($theme, on-error)};
+  --app-error-container: #{mat.get-theme-color($theme, error-container)};
+  --app-on-error-container: #{mat.get-theme-color($theme, on-error-container)};
+  --app-surface-dim: #{mat.get-theme-color($theme, surface-dim)};
+  --app-surface: #{mat.get-theme-color($theme, surface)};
+  --app-surface-bright: #{mat.get-theme-color($theme, surface-bright)};
+  --app-surface-container-lowest: #{mat.get-theme-color($theme, surface-container-lowest)};
+  --app-surface-container-low: #{mat.get-theme-color($theme, surface-container-low)};
+  --app-surface-container: #{mat.get-theme-color($theme, surface-container)};
+  --app-surface-container-high: #{mat.get-theme-color($theme, surface-container-high)};
+  --app-surface-container-highest: #{mat.get-theme-color($theme, surface-container-highest)};
+  --app-on-surface: #{mat.get-theme-color($theme, on-surface)};
+  --app-on-surface-variant: #{mat.get-theme-color($theme, on-surface-variant)};
+  --app-outline: #{mat.get-theme-color($theme, outline)};
+  --app-outline-variant: #{mat.get-theme-color($theme, outline-variant)};
+  --app-inverse-surface: #{mat.get-theme-color($theme, inverse-surface)};
+  --app-inverse-on-surface: #{mat.get-theme-color($theme, inverse-on-surface)};
+  --app-inverse-primary: #{mat.get-theme-color($theme, inverse-primary)};
+  --app-scrim: #{mat.get-theme-color($theme, scrim)};
+  --app-shadow: #{mat.get-theme-color($theme, shadow)};
+  --app-sys-shape-corner-small: #{map.get(mdc-tokens.md-sys-shape-values(), corner-small)};
+  --app-sys-shape-corner-medium: #{map.get(mdc-tokens.md-sys-shape-values(), corner-medium)};
+  --app-sys-shape-corner-large: #{map.get(mdc-tokens.md-sys-shape-values(), corner-large)};
+  --app-sys-shape-corner-extra-large: #{map.get(mdc-tokens.md-sys-shape-values(), corner-extra-large)};
+}
+
+@mixin theme-core($theme) {
+  @include mat.typography-hierarchy($theme);
+  @include mat.all-component-themes($theme);
+}
+
+@mixin theme-system($theme) {
+  @include mat.system-level-colors($theme);
+  @include mat.system-level-typography($theme);
+}
+
+@mixin theme-colors($theme) {
+  @include mat.all-component-colors($theme);
+}
+
+@mixin theme-variants($theme) {
+  .secondary {
+    @include mat.button-color($theme, $color-variant: secondary);
+    @include mat.fab-color($theme, $color-variant: secondary);
+    @include mat.checkbox-color($theme, $color-variant: secondary);
+    @include mat.progress-bar-color($theme, $color-variant: secondary);
+    @include mat.progress-spinner-color($theme, $color-variant: secondary);
+  }
+
+  .tertiary {
+    @include mat.button-color($theme, $color-variant: tertiary);
+    @include mat.fab-color($theme, $color-variant: tertiary);
+    @include mat.checkbox-color($theme, $color-variant: tertiary);
+    @include mat.progress-bar-color($theme, $color-variant: tertiary);
+    @include mat.progress-spinner-color($theme, $color-variant: tertiary);
+  }
+}
+
+:root {
+  @include theme-core($light-theme);
+  //@include theme-system($light-theme);
+  @include theme-variables($light-theme);
+  @include theme-variants($light-theme);
+
+  .dark {
+    //@include theme-system($dark-theme);
+    @include theme-colors($dark-theme);
+    @include theme-variables($dark-theme);
+    @include theme-variants($dark-theme);
+  }
+
+  .dense {
+    @include mat.all-component-densities(-2);
+  }
+
+  .dense-sm {
+    @include mat.all-component-densities(-3);
+  }
+
+  .dense-xs {
+    @include mat.all-component-densities(-5);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  }
+
+  .icon-lg {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-sm {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .icons-xs {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+
+  // TODO: workaround for https://stackoverflow.com/questions/74621735/angular-material-15-with-tailwind-css-3-2-4-in-angular-project-mismatched
+  .mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field,
+  .mdc-notched-outline__notch {
+    border-right-style: hidden;
+  }
+
+  md-checkbox.md-checked .md-icon:after {
+    border-width: 0;
+  }
+}
